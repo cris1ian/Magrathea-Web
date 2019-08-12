@@ -12,3 +12,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
+
+  .menu-item{
+    display: flex;
+
+    i {
+      margin: 16px;
+      margin-right: 0px;
+    }
+  }
+
+  .card-container{
+    display: flex;
+    .example-card{
+      margin: 10px;
+      width: 30%;
+      min-height: 200px;
+    }
+  }
+
+  .menu-title{
+    display: flex;
+    justify-content: center;
+  }
+
+
