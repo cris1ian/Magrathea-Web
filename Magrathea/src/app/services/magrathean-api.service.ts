@@ -9,13 +9,18 @@ export class MagratheanAPIService {
 
   constructor(private http: HttpClient) { }
 
-  getJson() {
-    return this.http.get(environment.urlMagrathea + environment.statusFile);
+  getLiveData() {
+    let headers: { 'Content-Type': 'text/plain' };
+    return this.http.get(environment.urlMagrathea + environment.statusFile, { headers: headers });
+  }
+  
+  getConfig() {
+    let headers: { 'Content-Type': 'text/plain' };
+    return this.http.get(environment.urlMagrathea + environment.configFile, { headers: headers });
   }
 
   setParameter(campo: string, SP: number) {
     const body = new HttpParams().set(campo, SP.toString());
-    let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-    return this.http.post(environment.urlMagrathea, body, { headers: headers });
+    return this.http.post(environment.urlMagrathea, body);
   }
 }

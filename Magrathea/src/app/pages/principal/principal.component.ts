@@ -3,6 +3,8 @@ import { Observable, timer } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { MagratheanAPIService } from 'src/app/services/magrathean-api.service';
 import { MagratheanData } from 'src/app/models/magrathean-data.model';
+import { LiveData } from 'src/app/models/live-data.model';
+import { ConfigData } from 'src/app/models/config-data.model';
 
 // For deploying app without long hash names: 
 // ng build --prod --output-hashing none
@@ -13,41 +15,51 @@ import { MagratheanData } from 'src/app/models/magrathean-data.model';
     styleUrls: ['./principal.component.scss']
 })
 export class PrincipalComponent implements OnInit {
-    magratheanData: MagratheanData;
-    
+    liveData: LiveData;
+    configData: ConfigData;
+    public HoraI: number;
+    public MinuI: number;
+    public HoraF: number;
+    public MinuF: number;
+
     constructor(private magratheanApiService: MagratheanAPIService) { }
 
     ngOnInit(): void {
         const trigger$ = timer(0, 5000).subscribe(() => this.actualizar());
+        this.magratheanApiService.getConfig().subscribe(
+            res => {
+                this.configData = <ConfigData>res;
+                this.HoraI = Math.floor(this.configData.SPminI / 60);
+                this.MinuI = (this.configData.SPminI % 60);
+                this.HoraF = Math.floor(this.configData.SPminF / 60);
+                this.MinuF = (this.configData.SPminF % 60);
+            }
+        )
     }
 
     actualizar() {
-        this.magratheanApiService.getJson().subscribe(res => {
-            this.magratheanData = <MagratheanData>res;
-            console.log(res);
-            console.log(this.magratheanData);
-        });
+        this.magratheanApiService.getLiveData().subscribe(
+            res => {
+                this.liveData = <LiveData>res;
+            }
+        );
     }
 
     setHum() {
-        console.log("Enviado SET SP Hum: " + this.magratheanData.newSpHum);
-        this.magratheanApiService.setParameter("hum", this.magratheanData.newSpHum).subscribe();
+        console.log("Enviado SET SP Hum: " + this.configData.SpHum);
+        this.magratheanApiService.setParameter("hum", this.configData.SpHum).subscribe();
     }
     setTemp() {
-        console.log("Enviado SET SP Temp: " + this.magratheanData.newSpTemp);
-        this.magratheanApiService.setParameter("temp1", this.magratheanData.newSpTemp).subscribe();
+        console.log("Enviado SET SP Temp: " + this.configData.SpTemp);
+        this.magratheanApiService.setParameter("temp1", this.configData.SpTemp).subscribe();
     }
     setMinuI() {
-        console.log("Enviado SET Hora Inicio: " + (this.magratheanData.newSPminI + 60 * this.magratheanData.newSPhorI));
-        this.magratheanApiService.setParameter("minuI", (this.magratheanData.newSPminI + 60 * this.magratheanData.newSPhorI)).subscribe();
+        console.log("Enviado SET Hora Inicio: " + (this.MinuI + 60 * this.HoraI));
+        this.magratheanApiService.setParameter("MinuI", (this.MinuI + 60 * this.HoraI)).subscribe();
     }
     setMinuF() {
-        console.log("Enviado SET Hora Fin: " + (this.magratheanData.newSPminF + 60 * this.magratheanData.newSPhorF));
-        this.magratheanApiService.setParameter("minuF", (this.magratheanData.newSPminF + 60 * this.magratheanData.newSPhorF)).subscribe();
-    }
-    setWiFi() {
-        console.log("Enviados Parametros WiFi: SSID " + this.magratheanData.newSsidName + " Pass " + this.magratheanData.newSsidPass);
-        // this.magratheanApiService.setParameter("SSID_name", this.magratheanData.newSsidName).subscribe();
+        console.log("Enviado SET Hora Fin: " + (this.MinuF + 60 * this.HoraF));
+        this.magratheanApiService.setParameter("MinuF", (this.MinuF + 60 * this.HoraF)).subscribe();
     }
 
     // Si inicializo en constructor ngOnInit luego no reescribe la variable ¿por qué?

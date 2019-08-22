@@ -1,70 +1,99 @@
 <div class="card-container">
+
+    <!-- SECCION HUMEDAD -->
     <mat-card class="example-card">
+
         <mat-card-header>
-            <div mat-></div>
             <mat-card-title>Humedad</mat-card-title>
         </mat-card-header>
+
         <mat-card-content>
-            <div *ngIf="magratheanData">
-                {{magratheanData.SpHum}}
-                {{magratheanData.humDht}}
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSpHum" [placeholder]="magratheanData.SpHum"
-                    [value]="magratheanData.SpHum" min="0" max="100" style="max-width:50px;" />
+            <div *ngIf="liveData" class="numeric-data">{{liveData.HumDHT}}</div>
+            <div *ngIf="configData">
+                <form class="example-form">
+                    <mat-form-field class="setpoint-input">
+                        <input matInput placeholder="Set Point" [(value)]="configData.SpHum">
+                    </mat-form-field>
+                </form>
             </div>
         </mat-card-content>
+
         <mat-card-actions>
             <button mat-button (click)="setHum()">SET</button>
         </mat-card-actions>
+
     </mat-card>
 
+    <!-- SECCION TEMPERATURA -->
     <mat-card class="example-card">
+
         <mat-card-header>
-            <div mat-></div>
             <mat-card-title>Temperatura</mat-card-title>
         </mat-card-header>
+
         <mat-card-content>
-            <div *ngIf="magratheanData">
-                {{magratheanData.SpTemp}}
-                {{magratheanData.tempDht}}
-                {{magratheanData.tempLm35}}
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSpTemp"
-                    [placeholder]="magratheanData.SpTemp" [value]="magratheanData.SpTemp" min="10" max="30"
-                    style="max-width:50px;" />
+            <div *ngIf="liveData" class="numeric-data">{{liveData.TempDHT}}</div>
+
+            <div *ngIf="configData">
+                <form class="example-form">
+                    <mat-form-field class="setpoint-input">
+                        <input matInput placeholder="Set Point" [(value)]="configData.SpTemp">
+                    </mat-form-field>
+                </form>
             </div>
         </mat-card-content>
-        <mat-card-actions>
+
+        <mat-card-actions layout="row" layout-align="center center" class="setpoint-button">
             <button mat-button (click)="setTemp()">SET</button>
         </mat-card-actions>
+
     </mat-card>
 
-    <mat-card class=" example-card">
+    <!-- SECCION HORAS -->
+    <mat-card class="example-card">
+
         <mat-card-header>
-            <div mat-></div>
             <mat-card-title>Hora</mat-card-title>
         </mat-card-header>
+
         <mat-card-content>
-            <div *ngIf="magratheanData">
+            <div *ngIf="configData" class="numeric-data">
                 {{HoraI}}:{{MinuI | number: '2.0'}}
+                -
                 {{HoraF}}:{{MinuF | number: '2.0'}}
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSPhorI" [value]="HoraI"
-                    style="max-width:50px;" />:
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSPminI" [value]="MinuI"
-                    style="max-width:50px;" />
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSPhorF" [value]="HoraF"
-                    style="max-width:50px;" />:
-                <input *ngIf="magratheanData" type="number" [(ngModel)]="newSPminF" [value]="MinuF"
-                    style="max-width:50px;" />
+            </div>
+
+            <div *ngIf="configData">
+                <form class="example-form">     
+
+                    <mat-form-field class="setpoint-input">
+                        <input type="number" matInput placeholder="HoraI" [(value)]="HoraI">
+                    </mat-form-field>                        
+                    <mat-form-field class="setpoint-input">
+                        <input type="number" matInput placeholder="MinuI" [(value)]="MinuI">
+                    </mat-form-field>                        
+                    <mat-form-field class="setpoint-input">
+                        <input type="number" matInput placeholder="HoraF" [(value)]="HoraF">
+                    </mat-form-field>                        
+                    <mat-form-field class="setpoint-input">
+                        <input type="number" matInput placeholder="MinuF" [(value)]="MinuF">
+                    </mat-form-field>
+                    
+                </form>
             </div>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-button (click)="setMinuI()">SET INI</button>
+
+        <mat-card-actions layout="row" layout-align="center center" class="setpoint-button">
+            <button mat-button (click)="setMinuI()">SET INICIO</button>
             <button mat-button (click)="setMinuF()">SET FIN</button>
         </mat-card-actions>
+
     </mat-card>
+
 </div>
 
 <!-- 
-<div *ngIf="!magratheanData.lampara;    else apagado"> ON </div>{{magratheanData.lampara}}
-<div *ngIf="!magratheanData.ventilador; else apagado"> ON </div>{{magratheanData.ventilador}}
-<div *ngIf="!magratheanData.riego;      else apagado"> ON </div>{{magratheanData.riego}}
- -->
+    <div *ngIf="!configData.lampara;    else apagado"> ON </div>{{configData.lampara}}
+    <div *ngIf="!configData.ventilador; else apagado"> ON </div>{{configData.ventilador}}
+    <div *ngIf="!configData.riego;      else apagado"> ON </div>{{configData.riego}}
+     -->
