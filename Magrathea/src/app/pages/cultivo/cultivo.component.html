@@ -1,0 +1,96 @@
+<div class="card-container">
+
+    <!-- SECCION HUMEDAD -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title" class="card-title">Humedad</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" class="numeric-data">{{liveData.HumDHT}}</div>
+            <div *ngIf="configData">
+                <form class="form-content">
+                    <mat-form-field class="setpoint-input">
+                        <input matInput required name="spHum" [(ngModel)]="configData.SpHum" type="number"
+                            placeholder="Set Point">
+                    </mat-form-field>
+                </form>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button (click)="setHum()">SET</button>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <!-- SECCION TEMPERATURA -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title">Temperatura</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" class="numeric-data">{{liveData.TempDHT}}</div>
+
+            <div *ngIf="configData">
+                <form class="form-content">
+                    <mat-form-field class="setpoint-input">
+                        <input matInput required name="spHum" [(ngModel)]="configData.SpTemp" type="number"
+                            placeholder="Set Point">
+                    </mat-form-field>
+                </form>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button (click)="setTemp()">SET</button>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <!-- SECCION HORAS -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title">Hora</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="configData" class="numeric-data">
+                {{encendido}} - {{apagado}}
+            </div>
+
+            <div *ngIf="configData">
+                <form class="form-content">
+                    <mat-form-field class="setpoint-input">
+                        <!-- <input matInput required name="encendido" [(ngModel)]="encendido" type="time" placeholder="Encendido"> -->
+                        <input matInput atp-time-picker required name="encendido" [(ngModel)]="encendido"
+                            placeholder="Encendido">
+                    </mat-form-field>
+                    <mat-form-field class="setpoint-input">
+                        <input matInput atp-time-picker required name="apagado" [(ngModel)]="apagado"
+                            placeholder="Apagado">
+                        <!-- <span class="error" ng-show="myForm.input.$error.required"> -->
+                    </mat-form-field>
+
+                </form>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button (click)="setEncendido()">SET INICIO</button>
+            <button mat-button (click)="setApagado()">SET FIN</button>
+        </mat-card-actions>
+
+    </mat-card>
+
+</div>
+
+<!-- 
+  <div *ngIf="!configData.lampara;    else apagado"> ON </div>{{configData.lampara}}
+  <div *ngIf="!configData.ventilador; else apagado"> ON </div>{{configData.ventilador}}
+  <div *ngIf="!configData.riego;      else apagado"> ON </div>{{configData.riego}}
+   -->

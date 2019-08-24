@@ -6,23 +6,23 @@
             <mat-card-title>WiFi</mat-card-title>
         </mat-card-header>
 
-        <mat-card-content>
+        <mat-card-content class="card-content">
             <div *ngIf="configData">
-                <form class="example-form">
+                <form class="form-content">
                     <mat-form-field class="wifi-input">
-                        <input matInput placeholder="Nombre de Red" [(value)]="configData.SSID_name">
+                        <input matInput required name="ID" [(ngModel)]="configData.SSID_name" type="text" placeholder="Nombre de Red">
                     </mat-form-field>
                 </form>
-                <form class="example-form">
+                <form class="form-content">
                     <mat-form-field class="wifi-input">
-                        <input matInput placeholder="Contraseña" [(value)]="configData.SSID_pass">
+                        <input matInput required name="password" [(ngModel)]="configData.SSID_pass" type="password" placeholder="Contraseña">
                     </mat-form-field>
                 </form>
             </div>
         </mat-card-content>
 
         <mat-card-actions class="card-actions">
-            <button mat-button (click)="setHum()">SET</button>
+            <button mat-button (click)="setWifi()">SET</button>
         </mat-card-actions>
     </mat-card>
 

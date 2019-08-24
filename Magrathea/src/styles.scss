@@ -4,25 +4,22 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.example-card {
-  max-width: 100%;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.setpoint-input {
+.card-container {
+  // font-size: 20px !important;
+  display: flex;
   justify-content: center;
-  max-width: 25%;
+  .example-card {
+    margin: 10px;
+    width: 30%;
+  }
+}
+
+.card-title{
+  font-size: 20px !important;
 }
 
 .card-header{
@@ -30,26 +27,24 @@ body {
   justify-content: center;
 }
 
-.card-actions{
-  display: flex;
-  justify-content: center;
+.card-content{
+  // max-width: 50%;
+  text-align: center;
+  // display: flex;
+  // justify-content: center;
+}
+
+.card-actions{ 
+  text-align: center;
+  // display: flex;
+  // justify-content: center;
 }
 
 .menu-item {
   display: flex;
   i {
     margin: 16px;
-    margin-right: 0px;
-  }
-}
-
-.card-container {
-  display: flex;
-  justify-content: center;
-  .example-card {
-    margin: 10px;
-    width: 30%;
-    min-height: 200px;
+    // margin-right: 0px;
   }
 }
 
@@ -61,7 +56,7 @@ body {
 .numeric-data {
   display: flex;
   justify-content: center;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: bold;
   // text-align: right;
 }
@@ -69,4 +64,11 @@ body {
 .config-data {
   display: flex;
   justify-content: center;
+}
+
+.setpoint-input {
+  // display: flex;
+  // justify-content: center;
+  max-width: 40%;
+  margin-top: 25px !important;
 }

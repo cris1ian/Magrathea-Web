@@ -4,11 +4,6 @@
 
 export const environment = {
   production: false,
-  // urlMagrathea: 'http://192.168.0.20',
-  urlMagrathea: 'assets',
-  statusFile: '/livedata.json',
-  configFile: '/config.json',
-  location: Location    
 };
 
 /*

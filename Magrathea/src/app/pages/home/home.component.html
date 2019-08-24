@@ -1,28 +1,32 @@
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="menuToggle">
-    <!-- [opened]="!(isHandset$ | async)"> -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [opened]="menuToggle"
+   [attr.role]="dialog" [mode]="over">
+    <!-- [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" 
+    [opened]="!(isHandset$ | async)" -->
 
     <mat-toolbar class="menu-title">Menu</mat-toolbar>
-    
+
     <mat-nav-list>
       <div class="menu-item">
-        <i class="fas fa-seedling"></i>
-        <a mat-list-item routerLink="/">CULTIVO</a>
+        <a mat-list-item routerLink="/">
+          <i class="fas fa-seedling"></i> CULTIVO
+        </a>
       </div>
       <div class="menu-item">
-        <i class="fa fa-chart-area"></i>
-        <a mat-list-item routerLink="/tendencias">TENDENCIAS</a>
+        <a mat-list-item routerLink="/tendencias">
+          <i class="fa fa-chart-area"></i> TENDENCIAS
+        </a>
       </div>
       <div class="menu-item">
-        <i class="fas fa-cogs"></i>
-        <a mat-list-item routerLink="/config">CONFIG</a>
+        <a mat-list-item routerLink="/config">
+          <i class="fas fa-cogs"></i> CONFIG
+        </a>
       </div>
       <div class="menu-item">
-        <i class="fas fa-wifi"></i>
-        <a mat-list-item routerLink="/wifi">WIFI</a>
+        <a mat-list-item routerLink="/wifi">
+          <i class="fas fa-wifi"></i> WIFI
+        </a>
       </div>
     </mat-nav-list>
 
