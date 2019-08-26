@@ -55,10 +55,17 @@ export class CultivoComponent implements OnInit {
         this.getConfig();
     }
 
+    // contL contV contR
     setManAuto(parameter: string) {
-        // contL contV contR
-        // console.log("Enviado SET SP Temp: " + this.configData.SpTemp);
-        // this.magratheanApiService.setParameter("temp1", this.configData.SpTemp).subscribe();
+        let comando: number;
+        comando = +!this.configData.SML * (+this.configData.contLamp + 1);
+        this.magratheanApiService.setParameter(parameter, comando).subscribe();
+        this.getConfig();
+    }
+    setState(parameter: string) {   
+        let comando: number;
+        comando = +this.configData.SML * (+!this.configData.contLamp + 1);
+        this.magratheanApiService.setParameter(parameter, comando).subscribe();
         this.getConfig();
     }
 

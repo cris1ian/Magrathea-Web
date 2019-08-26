@@ -109,7 +109,13 @@
                 <button mat-button (click)="setManAuto()">AUTO</button>
             </div>
             <ng-template #modoManual>
-                Modo Manual
+                <button mat-button (click)="setManAuto('contL')">MANUAL</button>
+                <div *ngIf="configData.SML; else apagar">
+                    <button mat-button (click)="setState('contL')">ENCENDER</button>
+                </div>
+                <ng-template #apagar>
+                    <button mat-button (click)="setState('contL')">APAGAR</button>
+                </ng-template>
             </ng-template>
         </mat-card-actions>
 
