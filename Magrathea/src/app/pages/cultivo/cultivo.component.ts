@@ -38,37 +38,46 @@ export class CultivoComponent implements OnInit {
             res => {
                 this.configData = <ConfigData>res;
                 this.encendido = Math.floor(this.configData.SPminI / 60) + ":" + (this.configData.SPminI % 60).toString().padStart(2, "0");
-                this.apagado =   Math.floor(this.configData.SPminF / 60) + ":" + (this.configData.SPminF % 60).toString().padStart(2, "0");
+                this.apagado = Math.floor(this.configData.SPminF / 60) + ":" + (this.configData.SPminF % 60).toString().padStart(2, "0");
             }
         )
     }
 
     setHum() {
-        console.log("Enviado SET SP Hum: " + this.configData.SpHum);
+        // console.log("Enviado SET SP Hum: " + this.configData.SpHum);
         this.magratheanApiService.setParameter("hum", this.configData.SpHum).subscribe();
         this.getConfig();
     }
+
     setTemp() {
-        console.log("Enviado SET SP Temp: " + this.configData.SpTemp);
+        // console.log("Enviado SET SP Temp: " + this.configData.SpTemp);
         this.magratheanApiService.setParameter("temp1", this.configData.SpTemp).subscribe();
         this.getConfig();
     }
+
+    setManAuto(parameter: string) {
+        // contL contV contR
+        // console.log("Enviado SET SP Temp: " + this.configData.SpTemp);
+        // this.magratheanApiService.setParameter("temp1", this.configData.SpTemp).subscribe();
+        this.getConfig();
+    }
+
     setEncendido() {
         var minuto: number;
         var hora: number;
-        hora = +this.encendido.substring(0,this.encendido.indexOf(":"));
-        minuto = +this.encendido.substring(this.encendido.indexOf(":")+1);
-        console.log("Enviado SET Hora Inicio: " + (minuto + 60 * hora + minuto));
-        this.magratheanApiService.setParameter("MinuI", (minuto + 60 * hora + minuto)).subscribe();
+        hora = +this.encendido.substring(0, this.encendido.indexOf(":"));
+        minuto = +this.encendido.substring(this.encendido.indexOf(":") + 1);
+        // console.log("Enviado SET Hora Inicio: " + (minuto + 60 * hora + minuto));
+        this.magratheanApiService.setParameter("minuI", (60 * hora + minuto)).subscribe();
         this.getConfig();
     }
     setApagado() {
         var minuto: number;
         var hora: number;
-        hora = +this.apagado.substring(0,this.apagado.indexOf(":"));
-        minuto = +this.apagado.substring(this.apagado.indexOf(":")+1);
-        console.log("Enviado SET Hora Fin: " + (minuto + 60 * hora + minuto));
-        this.magratheanApiService.setParameter("MinuF", (minuto + 60 * hora + minuto)).subscribe();
+        hora = +this.apagado.substring(0, this.apagado.indexOf(":"));
+        minuto = +this.apagado.substring(this.apagado.indexOf(":") + 1);
+        // console.log("Enviado SET Hora Fin: " + (minuto + 60 * hora + minuto));
+        this.magratheanApiService.setParameter("minuF", (60 * hora + minuto)).subscribe();
         this.getConfig();
     }
 

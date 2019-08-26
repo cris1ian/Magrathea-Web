@@ -1,3 +1,4 @@
+<!-- VARIABLES ANALOGICAS Y SET POINTS -->
 <div class="card-container">
 
     <!-- SECCION HUMEDAD -->
@@ -8,7 +9,7 @@
         </mat-card-header>
 
         <mat-card-content class="card-content">
-            <div *ngIf="liveData" class="numeric-data">{{liveData.HumDHT}}</div>
+            <div *ngIf="liveData" class="numeric-data">{{liveData.HumDHT}}%</div>
             <div *ngIf="configData">
                 <form class="form-content">
                     <mat-form-field class="setpoint-input">
@@ -33,7 +34,7 @@
         </mat-card-header>
 
         <mat-card-content class="card-content">
-            <div *ngIf="liveData" class="numeric-data">{{liveData.TempDHT}}</div>
+            <div *ngIf="liveData" class="numeric-data">{{liveData.TempDHT}}°C</div>
 
             <div *ngIf="configData">
                 <form class="form-content">
@@ -59,8 +60,8 @@
         </mat-card-header>
 
         <mat-card-content class="card-content">
-            <div *ngIf="configData" class="numeric-data">
-                {{encendido}} - {{apagado}}
+            <div *ngIf="configData" class="time-data">
+                {{encendido}} {{apagado}}
             </div>
 
             <div *ngIf="configData">
@@ -88,6 +89,68 @@
     </mat-card>
 
 </div>
+
+<!-- VARIABLES DIGITALES Y MODOS MANUALES -->
+<div class="card-container">
+
+    <!-- SECCION LAMPARA -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title" class="card-title"></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" class="numeric-data"><i class="fas fa-lightbulb" fa-7x></i></div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <div *ngIf="liveData.lampara; else modoManual">
+                <button mat-button (click)="setManAuto()">AUTO</button>
+            </div>
+            <ng-template #modoManual>
+                Modo Manual
+            </ng-template>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <!-- SECCION VENTILADOR -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title"></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" class="numeric-data"><i class="fab fa-fan"></i></div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button (click)="setTemp()">SET</button>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <!-- SECCION RIEGO -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title"></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" class="numeric-data"><i class="fas fa-tint"></i></div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button (click)="setTemp()">SET</button>
+        </mat-card-actions>
+
+    </mat-card>
+
+</div>
+
 
 <!-- 
   <div *ngIf="!configData.lampara;    else apagado"> ON </div>{{configData.lampara}}

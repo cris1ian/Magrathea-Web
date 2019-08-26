@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MagratheanAPIService } from 'src/app/services/magrathean-api.service';
+// import { Papa } from 'ngx-papaparse';
 
 @Component({
   selector: 'app-trending',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trending.component.scss']
 })
 export class TrendingComponent implements OnInit {
+  data: any;
 
-  constructor() { }
+  constructor(private magratheanApiService: MagratheanAPIService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getTrending();
+  }
+
+  getTrending() {
+    this.magratheanApiService.getTrending()
+      .subscribe(res => {
+        this.data = res;
+        console.log(res);
+      });
   }
 
 }

@@ -22,10 +22,8 @@ export class WifiComponent implements OnInit {
   }
 
   setWifi(event) {
-    console.log("Enviado SSID_name: " + this.configData.SSID_name);
-    // this.magratheanApiService.setParameter("SSID_name", this.configData.SSID_name).subscribe();
-    console.log("Enviado SSID_pass: " + this.configData.SSID_pass);
-    // this.magratheanApiService.setParameter("SSID_pass", this.configData.SSID_pass).subscribe();
+    // console.log("Enviado SSID_name: " + this.configData.SSID_name);
+    this.magratheanApiService.setParameter2("SSID_name", this.configData.SSID_name, "SSID_pass", this.configData.SSID_pass).subscribe();
   }
 
 }

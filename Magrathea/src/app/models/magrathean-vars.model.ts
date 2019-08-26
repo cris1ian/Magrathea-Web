@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export class MagratheanVars {
     statusFile = '/livedata.json';
     configFile = '/config.json';
-    trendingFile = '/trending.json';
+    trendingFile = '/trending.csv';
     urlMagrathea: string;
     // urlMagrathea: 'assets';
     // urlMagrathea: location.hostname

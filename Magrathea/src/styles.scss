@@ -56,8 +56,18 @@ body {
 .numeric-data {
   display: flex;
   justify-content: center;
-  font-size: 2em;
+  font-size: 7em;
   font-weight: bold;
+  color: yellowgreen;
+  // text-align: right;
+}
+
+.time-data {
+  display: flex;
+  justify-content: center;
+  font-size: 5em;
+  font-weight: bold;
+  color: yellowgreen;
   // text-align: right;
 }
 
