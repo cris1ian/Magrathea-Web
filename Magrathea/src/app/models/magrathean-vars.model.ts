@@ -17,7 +17,8 @@ export class MagratheanVars {
             location: Location;
             this.urlMagrathea = location.origin;            
         } else {
-            this.urlMagrathea = "http://192.168.0.20:80";            
+            this.urlMagrathea = "http://192.168.0.20:80";
+            // this.urlMagrathea = "/assets";            
         }
     }
 
