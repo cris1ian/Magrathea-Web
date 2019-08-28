@@ -93,6 +93,36 @@
 <!-- VARIABLES DIGITALES Y MODOS MANUALES -->
 <div class="card-container">
 
+    <!-- SECCION VENTILADOR -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title" class="card-title"></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" [className]="liveData.ventilador ? 'stateOn-output' : 'stateOff-output'">
+                <i class="fas fa-cog" fa-7x></i>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <div *ngIf="configData && !configData.contVent; else modoManual">
+                <button mat-button (click)="setManAuto('contV')">AUTO</button>
+            </div>
+            <ng-template #modoManual>
+                <button mat-button (click)="setManAuto('contV')">MANUAL</button>
+                <div *ngIf="liveData && liveData.ventilador; else apagar">
+                    <button mat-button (click)="setState('contV')"><i class="fas fa-power-off"></i></button>
+                </div>
+                <ng-template #apagar>
+                    <button mat-button (click)="setState('contV')"><i class="fas fa-power-off"></i></button>
+                </ng-template>
+            </ng-template>
+        </mat-card-actions>
+
+    </mat-card>
+
     <!-- SECCION LAMPARA -->
     <mat-card class="example-card">
 
@@ -101,7 +131,6 @@
         </mat-card-header>
 
         <mat-card-content class="card-content">
-            <!-- <div *ngIf="liveData" [ngClass]="{'stateOn-output':liveData.lampara, 'stateOff-output':!liveData.lampara}" > -->
             <div *ngIf="liveData" [className]="liveData.lampara ? 'stateOn-output' : 'stateOff-output'">
                 <i class="fas fa-lightbulb" fa-7x></i>
             </div>
@@ -118,6 +147,36 @@
                 </div>
                 <ng-template #apagar>
                     <button mat-button (click)="setState('contL')"><i class="fas fa-power-off"></i></button>
+                </ng-template>
+            </ng-template>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <!-- SECCION RIEGO -->
+    <mat-card class="example-card">
+
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title" class="card-title"></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div *ngIf="liveData" [className]="liveData.riego ? 'stateOn-output' : 'stateOff-output'">
+                <i class="fas fa-tint" fa-7x></i>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <div *ngIf="configData && !configData.contRieg; else modoManual">
+                <button mat-button (click)="setManAuto('contR')">AUTO</button>
+            </div>
+            <ng-template #modoManual>
+                <button mat-button (click)="setManAuto('contR')">MANUAL</button>
+                <div *ngIf="liveData && liveData.riego; else apagar">
+                    <button mat-button (click)="setState('contR')"><i class="fas fa-power-off"></i></button>
+                </div>
+                <ng-template #apagar>
+                    <button mat-button (click)="setState('contR')"><i class="fas fa-power-off"></i></button>
                 </ng-template>
             </ng-template>
         </mat-card-actions>

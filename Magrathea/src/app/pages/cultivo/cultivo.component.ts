@@ -57,6 +57,7 @@ export class CultivoComponent implements OnInit {
 
     // contLamp = false -> automatico
     setManAuto(parameter: string) {
+        console.log("parameter: " + parameter);
         let comando: number;    
         comando = this.configData.contLamp ? 0 : (this.liveData.lampara ? 1 : 2);
         this.magratheanApiService.setParameter(parameter, comando).subscribe();
@@ -65,6 +66,7 @@ export class CultivoComponent implements OnInit {
 
     // SML = true -> prendido
     setState(parameter: string) {
+        console.log("parameter: " + parameter);
         let comando: number;
         comando = this.liveData.lampara ? 2 : 1;
         this.magratheanApiService.setParameter(parameter, comando).subscribe();
