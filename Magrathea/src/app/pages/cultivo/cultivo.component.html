@@ -107,16 +107,16 @@
         </mat-card-content>
 
         <mat-card-actions class="card-actions">
-            <div *ngIf="configData && !configData.contVent; else modoManual">
-                <button mat-button (click)="setManAuto('contV')">AUTO</button>
+            <div *ngIf="configData && !configData.contVent; else modoManualVentilador">
+                <button mat-button (click)="setControlManual('ventilador','contVent','contV')">AUTO</button>
             </div>
-            <ng-template #modoManual>
-                <button mat-button (click)="setManAuto('contV')">MANUAL</button>
-                <div *ngIf="liveData && liveData.ventilador; else apagar">
-                    <button mat-button (click)="setState('contV')"><i class="fas fa-power-off"></i></button>
+            <ng-template #modoManualVentilador>
+                <button mat-button (click)="setControlManual('ventilador','contVent','contV')">MANUAL</button>
+                <div *ngIf="liveData && liveData.ventilador; else apagarVentilador">
+                    <button mat-button (click)="setForcedOn('ventilador','contVent','contV')"><i class="fas fa-power-off"></i></button>
                 </div>
-                <ng-template #apagar>
-                    <button mat-button (click)="setState('contV')"><i class="fas fa-power-off"></i></button>
+                <ng-template #apagarVentilador>
+                    <button mat-button (click)="setForcedOn('ventilador','contVent','contV')"><i class="fas fa-power-off"></i></button>
                 </ng-template>
             </ng-template>
         </mat-card-actions>
@@ -137,16 +137,16 @@
         </mat-card-content>
 
         <mat-card-actions class="card-actions">
-            <div *ngIf="configData && !configData.contLamp; else modoManual">
-                <button mat-button (click)="setManAuto('contL')">AUTO</button>
+            <div *ngIf="configData && !configData.contLamp; else modoManualLampara">
+                <button mat-button (click)="setControlManual('lampara','contLamp','contL')">AUTO</button>
             </div>
-            <ng-template #modoManual>
-                <button mat-button (click)="setManAuto('contL')">MANUAL</button>
-                <div *ngIf="liveData && liveData.lampara; else apagar">
-                    <button mat-button (click)="setState('contL')"><i class="fas fa-power-off"></i></button>
+            <ng-template #modoManualLampara>
+                <button mat-button (click)="setControlManual('lampara','contLamp','contL')">MANUAL</button>
+                <div *ngIf="liveData && liveData.lampara; else apagarLampara">
+                    <button mat-button (click)="setForcedOn('lampara','contLamp','contL')"><i class="fas fa-power-off"></i></button>
                 </div>
-                <ng-template #apagar>
-                    <button mat-button (click)="setState('contL')"><i class="fas fa-power-off"></i></button>
+                <ng-template #apagarLampara>
+                    <button mat-button (click)="setForcedOn('lampara','contLamp','contL')"><i class="fas fa-power-off"></i></button>
                 </ng-template>
             </ng-template>
         </mat-card-actions>
@@ -167,16 +167,16 @@
         </mat-card-content>
 
         <mat-card-actions class="card-actions">
-            <div *ngIf="configData && !configData.contRieg; else modoManual">
-                <button mat-button (click)="setManAuto('contR')">AUTO</button>
+            <div *ngIf="configData && !configData.contRieg; else modoManualRiego">
+                <button mat-button (click)="setControlManual('riego','contRieg','contR')">AUTO</button>
             </div>
-            <ng-template #modoManual>
-                <button mat-button (click)="setManAuto('contR')">MANUAL</button>
-                <div *ngIf="liveData && liveData.riego; else apagar">
-                    <button mat-button (click)="setState('contR')"><i class="fas fa-power-off"></i></button>
+            <ng-template #modoManualRiego>
+                <button mat-button (click)="setControlManual('riego','contRieg','contR')">MANUAL</button>
+                <div *ngIf="liveData && liveData.riego; else apagarRiego">
+                    <button mat-button (click)="setForcedOn('riego','contRieg','contR')"><i class="fas fa-power-off"></i></button>
                 </div>
-                <ng-template #apagar>
-                    <button mat-button (click)="setState('contR')"><i class="fas fa-power-off"></i></button>
+                <ng-template #apagarRiego>
+                    <button mat-button (click)="setForcedOn('riego','contRieg','contR')"><i class="fas fa-power-off"></i></button>
                 </ng-template>
             </ng-template>
         </mat-card-actions>

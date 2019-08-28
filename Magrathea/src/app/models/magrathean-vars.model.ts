@@ -7,6 +7,8 @@ export class MagratheanVars {
     statusFile = '/livedata.json';
     configFile = '/config.json';
     trendingFile = '/trending.csv';
+    forcedOn = 1;
+    forcedOff = 2;
     urlMagrathea: string;
     // urlMagrathea: 'assets';
     // urlMagrathea: location.hostname
@@ -17,8 +19,8 @@ export class MagratheanVars {
             location: Location;
             this.urlMagrathea = location.origin;            
         } else {
-            this.urlMagrathea = "http://192.168.0.20:80";
-            // this.urlMagrathea = "/assets";            
+            // this.urlMagrathea = "http://192.168.0.20:80";
+            this.urlMagrathea = "/assets";            
         }
     }
 

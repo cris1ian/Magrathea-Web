@@ -4,6 +4,7 @@ import { concatMap, map } from 'rxjs/operators';
 import { MagratheanAPIService } from 'src/app/services/magrathean-api.service';
 import { LiveData } from 'src/app/models/live-data.model';
 import { ConfigData } from 'src/app/models/config-data.model';
+import { MagratheanVars } from 'src/app/models/magrathean-vars.model';
 
 // For deploying app without long hash names: 
 // ng build --prod --output-hashing none
@@ -18,6 +19,7 @@ export class CultivoComponent implements OnInit {
     configData: ConfigData;
     encendido: String;
     apagado: String;
+    magratheanVars = new (MagratheanVars);
     constructor(private magratheanApiService: MagratheanAPIService) { }
 
     ngOnInit(): void {
@@ -56,22 +58,24 @@ export class CultivoComponent implements OnInit {
     }
 
     // contLamp = false -> automatico
-    setManAuto(parameter: string) {
+    setControlManual(liveDataElemento: string, configDataElemento: string, parameter: string) {
         console.log("parameter: " + parameter);
-        let comando: number;    
-        comando = this.configData.contLamp ? 0 : (this.liveData.lampara ? 1 : 2);
-        this.magratheanApiService.setParameter(parameter, comando).subscribe();
+        let comandoSend: number;
+        comandoSend = this.configData[configDataElemento] ? 0 : (this.liveData[liveDataElemento] ? this.magratheanVars.forcedOn : this.magratheanVars.forcedOff);
+        this.magratheanApiService.setParameter(parameter, comandoSend).subscribe();
+        this.getConfig();
+    }
+    
+    // SML = true -> prendido
+    setForcedOn(liveDataElemento: string, configDataElemento: string, parameter: string) {
+        console.log("parameter: " + parameter);
+        let comandoSend: number;
+        comandoSend = this.liveData[liveDataElemento] ? this.magratheanVars.forcedOff : this.magratheanVars.forcedOn;
+        this.magratheanApiService.setParameter(parameter, comandoSend).subscribe();
         this.getConfig();
     }
 
-    // SML = true -> prendido
-    setState(parameter: string) {
-        console.log("parameter: " + parameter);
-        let comando: number;
-        comando = this.liveData.lampara ? 2 : 1;
-        this.magratheanApiService.setParameter(parameter, comando).subscribe();
-        this.getConfig();
-    }
+
 
     setEncendido() {
         var minuto: number;
