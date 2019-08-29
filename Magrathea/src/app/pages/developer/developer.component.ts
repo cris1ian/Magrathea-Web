@@ -14,7 +14,7 @@ export class DeveloperComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setParameter(event) {
+  setParameter() {
     // console.log("Enviado SSID_name: " + this.configData.SSID_name);
     this.magratheanApiService.setParameter(this.parametro, this.valor).subscribe();
   }
