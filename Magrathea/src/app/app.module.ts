@@ -16,7 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AmazingTimePickerModule } from 'amazing-time-picker'; 
-// import { Papa } from 'ngx-papaparse';
+import { Papa } from 'ngx-papaparse';
 import { MagratheanAPIService } from './services/magrathean-api.service';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -52,12 +52,12 @@ import { DeveloperComponent } from './pages/developer/developer.component';
     MatListModule,
     MatCardModule,
     MatInputModule,
-    AmazingTimePickerModule,
-    // Papa
+    AmazingTimePickerModule
   ],
   providers: [
     MagratheanAPIService,
-    AppRoutingModule
+    AppRoutingModule,
+    Papa
   ],
   bootstrap: [AppComponent]
 })

@@ -74,8 +74,6 @@ export class CultivoComponent implements OnInit {
         this.getConfig();
     }
 
-
-
     setEncendido() {
         var minuto: number;
         var hora: number;
@@ -85,6 +83,7 @@ export class CultivoComponent implements OnInit {
         this.magratheanApiService.setParameter("minuI", (60 * hora + minuto)).subscribe();
         this.getConfig();
     }
+    
     setApagado() {
         var minuto: number;
         var hora: number;

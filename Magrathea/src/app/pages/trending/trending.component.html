@@ -1,6 +1,8 @@
-<p>
-  Proximamente: graficos de historicos
-</p>
-<p>
-  Ver en consola el resultado de la request
-</p>
+<div *ngIf="data">
+    <div *ngFor="let i of data">
+        Temperatura: {{i[0]}} - Humedad {{i[2]}} 
+    </div>
+</div>
+<div *ngIf="!data">
+    Data not loaded
+</div>
