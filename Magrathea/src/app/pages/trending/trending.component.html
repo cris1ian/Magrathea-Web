@@ -1,8 +1,3 @@
-<div *ngIf="data">
-    <div *ngFor="let i of data">
-        Temperatura: {{i[0]}} - Humedad {{i[2]}} 
-    </div>
-</div>
-<div *ngIf="!data">
-    Data not loaded
+<div class="magrathean-chart" [hidden]="!chart">
+    <canvas id="canvas">{{ chart }}</canvas>  
 </div>

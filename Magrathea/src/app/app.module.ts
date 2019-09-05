@@ -26,6 +26,7 @@ import { WifiComponent } from './pages/wifi/wifi.component';
 import { TrendingComponent } from './pages/trending/trending.component';
 import { CultivoComponent } from './pages/cultivo/cultivo.component';
 import { DeveloperComponent } from './pages/developer/developer.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DeveloperComponent } from './pages/developer/developer.component';
     MatListModule,
     MatCardModule,
     MatInputModule,
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    ChartsModule,
   ],
   providers: [
     MagratheanAPIService,
