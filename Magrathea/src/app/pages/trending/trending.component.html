@@ -1,3 +1,9 @@
-<div class="magrathean-chart" [hidden]="!chart">
-    <canvas id="canvas">{{ chart }}</canvas>  
+<div *ngIf='!chartTemp&&!chartHum'>
+    Renderizando grafico...
+</div>
+<div class="magrathean-chart" [hidden]="!chartTemp">
+    <canvas id="canvasTemp">{{ chartTemp }}</canvas>  
+</div>
+<div class="magrathean-chart" [hidden]="!chartHum">
+    <canvas id="canvasHum">{{ chartHum }}</canvas>  
 </div>

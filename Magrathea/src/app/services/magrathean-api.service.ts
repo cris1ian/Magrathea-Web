@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { forcedOn, forcedOff, statusFile, configFile, trendingFile } from '../models/const.model';
+import { forcedOn, forcedOff, statusFile, configFile, oldTrendingFile, recentTrendingFile } from '../models/const.model';
 import { urlSetter } from '../models/url-setter.model';
 
 @Injectable({
@@ -21,9 +21,14 @@ export class MagratheanAPIService {
     return this.http.get(this.path.urlMagrathea + configFile, { headers: headers });
   }
 
-  getTrending() {
+  getTrendingOld() {
     let headers: { 'Content-Type': 'text/plain' };
-    return this.http.get(this.path.urlMagrathea + trendingFile, { headers: headers, responseType: 'text' });
+    return this.http.get(this.path.urlMagrathea + oldTrendingFile, { headers: headers, responseType: 'text' });
+  }
+
+  getTrendingRecent() {
+    let headers: { 'Content-Type': 'text/plain' };
+    return this.http.get(this.path.urlMagrathea + recentTrendingFile, { headers: headers, responseType: 'text' });
   }
 
   setParameter(campo: string, SP: any) {
